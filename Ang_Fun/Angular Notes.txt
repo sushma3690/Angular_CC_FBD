@@ -1,0 +1,135 @@
+TypeScript
+Benefits:
+Clean structure
+Lots of resuable code - user navigation and browser histry
+Apps are more testable
+
+software req:
+install node;
+npm install -> to download all 3 party libraries
+npm install -g @angular/cli -> g -> makes it global else it will install only in the current directory.
+
+my:
+node-14.4
+angular-10.0.1
+
+ng serve -> node server listening on port 4200
+
+Angular Projects Structure::
+
+e2e: for end to end testing - like user simulation - navigating to our app on brower, login, butoon click, filling out form and such behaviors.
+
+node_modules -> all 3rd party libraries are downloaded here and its purely for dev purposes. in production required depencies are bundled along with the app
+and released for production
+
+src -> the folder having source code.
+src/
+/ app -> every app has atleast one module and one component
+/assets -> static assets like images, text files, etc.,
+/environments - config files like one for dev, other for production
+/fav.ico -> tab image in broswer
+/index.html -> it doesnt have any dirct references to angilar but content is laoded into index html dynamically
+/main.ts -> equivalent to main program in java -> bootstraps the main agular AppModule, and thats where from where it all starts
+/polyfill.js -> features of JS that angular needs but nt supported by brser -> hacks
+/style.css -> global styles file - can have individual ones at component level too
+/test.ts -> writing test cases - for setting up test config
+
+.editorconfig -> if dveelpong angular proj as a team then this is needed so that all dvlopers have same config for their editors used in develpoment
+.gitignore - same like in eclipse/ any git proj
+karma.conf.js - testing -> config file for karma which test runner for Angular app
+package.json -> all dependcies for the proj along with their versions;;; depen , dev depen(karma)
+protractor.config.js -> end to end JS app
+tsconfig -> u mention some props that u wnt when converting from typescript to javascript
+tslint.json-> config file fot tlint -> equivalent to sonarqube - tslint checks your codes readability, maintainbilty etc.,
+
+Webpack :: the moment a change is nade in any file - html, css or js then webpack immediately compiles and does a hot deploy. the changes r 
+seen on the browser without a rfresh -> the things that r mainly compiled n bundled r pollyfills, styles, vendor and one more.
+ang 4 - no way to change the bundle name .
+
+all the css is compiled into js bundle - styles bundle
+
+Angular versions::
+diff angular core libs - @angular/core 2.x, compiler 2.x, http 2.x , router 3; to main all versions same going forward- angular went straight to 4 from 3
+
+TypeScript::
+
+Superset of JS
+Any valid JS code is valid TS
+Once we TS on exdcution it converts TS to JS(transpiled TS to JS)
+String static typing -> catch errors at compile time than runtime
+
+npm install -g typescript - 3.9.6
+
+access modifiers - applied on variables , methods:
+
+private -> cant be accesed by anyone outsside
+public -> by default
+protected
+
+access modifers in construct eliminates the need to i itialize variables or even assign them, its taken care the moment
+u put access modifer before the variable in constructr - variable wuth same name is created and initialized internally by TS
+
+prop looks like a variable and used like a variable but really is a method isndie the class - cpuld be  a getter and setter or either of them
+
+modules - export, import in diff files
+
+
+Section2::
+
+Components - Data + HTML + View
+
+1 udemy app-> 1 big component or many small components that can be used in different applications too
+1 udemy app -> nav bar component, side bar component, course component, rating component (probably rating component can be used in movies app too)
+every angular app has 1 component called root component
+every angular app has 1 component called root component
+Module -> every angular app has 1 component, it can jave more than 1 but related components too
+udemy app potential components -> courses, messaging, instrctr, admin
+
+Components::
+
+create a component
+registr with a module
+write markup
+
+easily can be done using -> ng g c course -> creates component n updates app module
+
+*ngFor;;;
+
+* shul be used before any directive that modifes the dom - either add or delete
+
+export class CourseComponent{
+    title="List of Courses";
+    courses=["c1","c2","c3"]; //http-> tightly coupled and same http has to be repeated; hence service
+
+    getTitle(){
+        return this.title;
+    }
+
+}
+
+Services: forcommon reusable code that can be shared across components.
+
+new Service();;; tight coupling
+constructr(service: Srvice);; and in module providers[Srvice];;; will instantiate and assign it to object var declaed in constrt of component
+- loose coupling
+
+Service - 1 instance - even when used by 100 componenets
+
+import { Injectable } from '@angular/core';
+
+@Injectable({ //if heres a dependency in servc constrctr it tells angular to inject those; for Component @Component a;teady has injectable inside it
+  providedIn: 'root'
+})
+export class EmailService {
+
+  constructor() { }
+}
+
+String interpolation+ prop biinding - both are one way binding from component to view
+String interpolation for text in headings divs or paras
+property binding where string interpolation bcomes too long and annoying
+
+
+
+
+
